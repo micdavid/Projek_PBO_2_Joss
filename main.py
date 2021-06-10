@@ -43,7 +43,7 @@ class Login(gui.FrameLogin):
                     FrameMgr.Show()
                     FrameLogin.Hide()
                 elif Jabatan[i] != "Manager" :
-                    FrameKry.Show()
+                    FrameBarang2.Show()
                     FrameLogin.Hide()
 
 
@@ -84,8 +84,14 @@ class FrameKaryawan(gui.FrameKaryawanMgr):
             self.listIdKry.append(id)
             row += 1
 
+        self.tabel_karyawan.Fit()
+
     def btn_back( self, event ):
         FrameMgr.Show()
+        FrameKaryawan.Hide()
+
+    def btn_end( self, event ):
+        FrameEnd.Show()
         FrameKaryawan.Hide()
 
     def btn_tambah( self, event ):
@@ -223,8 +229,12 @@ class FrameBarang1 (gui.FrameBarangMgr):
         dlg = dlgAddBarang(self)
         dlg.ShowModal()
 
+    def btn_end( self, event ):
+        FrameEnd.Show()
+        FrameBarang1.Hide()
+
     def btn_cek( self, event ):
-        FrameLapor.Show()
+        FrameLapor2.Show()
         FrameBarang1.Hide()
 
     def insertDataBrg(self, no_barang, nama_barang, jenis_barang, harga_barang, stok_barang):
@@ -312,10 +322,16 @@ class FrameBarang2 (gui.FrameBarang):
         self.showDataBarang()
 
     def btn_lapor( self, event ):
-        frame1 = FrameLapor(self)
-        frame2 = FrameBarang2(self)
-        frame2.Destroy()
-        frame1.Show()
+        FrameLapor.Show()
+        FrameBarang2.Hide()
+
+    def btn_back( self, event ):
+        FrameLogin.Show()
+        FrameBarang2.Hide()
+
+    def btn_end( self, event ):
+        FrameEnd.Show()
+        FrameBarang2.Hide()
 
     def showDataBarang(self):
         n_cols = self.tabel_barang.GetNumberCols()
@@ -359,7 +375,11 @@ class FrameLapor(gui.FrameLaporMgr):
         dlg.ShowModal() 
         
     def btn_back( self, event ):
-        FrameBarang1.Show()
+        FrameBarang2.Show()
+        FrameLapor.Hide()
+
+    def btn_end( self, event ):
+        FrameEnd.Show()
         FrameLapor.Hide()
     
     def showDataLapor(self):
@@ -419,6 +439,51 @@ class dlgAddLapor(gui.FrameInputLaporan):
         self.input_user.SetValue(username)
 
 
+class FrameLapor2(gui.FrameLaporan):
+    def __init__(self,parent):
+        gui.FrameLaporan.__init__(self,parent)
+        self.showDataLapor()
+
+    def btn_back( self, event ):
+        FrameBarang1.Show()
+        FrameLapor2.Hide()
+
+    def btn_end( self, event ):
+        FrameEnd.Show()
+        FrameLapor2.Hide()
+
+    def showDataLapor(self):
+        n_cols = self.tabel_lapor.GetNumberCols()
+        n_rows = self.tabel_lapor.GetNumberRows()
+        if n_cols > 0:
+            self.tabel_lapor.DeleteCols(0, n_cols, True)
+        if n_rows > 0:
+            self.tabel_lapor.DeleteRows(0, n_rows, True)
+
+        kolom = ['No Barang', 'Nama Barang', 'Username']
+        self.tabel_lapor.AppendCols(len(kolom))
+
+        self.data_lapor = Data.Lapor()
+        listLaporan = self.data_lapor.getDataLapor()
+        row = 0
+
+        self.listIdLpr = []
+        for col in range(len(kolom)):
+            self.tabel_lapor.SetColLabelValue(col, kolom[col]) 
+        for row_laporan in listLaporan:
+            self.tabel_lapor.AppendRows(1)
+            id, no_barang, nama_barang, username = row_laporan
+            no_item=str(no_barang)
+            nama=str(nama_barang)
+            user=str(username)
+            self.tabel_lapor.SetCellValue(row, 0, no_item)
+            self.tabel_lapor.SetCellValue(row, 1, nama)
+            self.tabel_lapor.SetCellValue(row, 2, user)
+            self.listIdLpr.append(id)
+            row += 1
+        self.tabel_lapor.Fit()
+
+
 class FrameMgr(gui.FrameMenuMgr):
     def __init__(self,parent):
         gui.FrameMenuMgr.__init__(self,parent)
@@ -432,31 +497,16 @@ class FrameMgr(gui.FrameMenuMgr):
         FrameLogin.Show()
         FrameMgr.Hide()
 
-class FrameKry(gui.FrameMenuKry):
+class FrameEnd(gui.EndFrame):
     def __init__(self,parent):
-        gui.FrameMenuKry.__init__(self,parent)
-    def btn_barang1(self, event):
-        FrameBarang2.Show()
-        FrameKry.Hide()
-    def btn_profil( self, event ):
-        FrameProfil.Show()
-        FrameKry.Hide()
-    def btn_back( self, event ):
+        gui.EndFrame.__init__(self,parent)
+
+    def btn_login( self, event ):
         FrameLogin.Show()
-        FrameKry.Hide()
+        FrameEnd.Hide()
 
-
-class FrameInputKr(gui.FrameInputKry):
-    def __init__(self,parent):
-        gui.FrameInputKry.__init__(self,parent)
-
-
-class FrameProfil(gui.FrameProfilKry):
-    def __init__(self,parent):
-        gui.FrameProfilKry.__init__(self,parent)
-    def btn_back( self, event ):
-        FrameKry.Show()
-        FrameProfil.Hide()
+    def btn_end( self, event ):
+        FrameEnd.Destroy()
 
 
 
@@ -464,24 +514,19 @@ app=wx.App()
 FrameWelcome=FrameWelcome(None)
 FrameLogin=Login(None)
 FrameMgr=FrameMgr(None)
-FrameKry=FrameKry(None)
 FrameKaryawan=FrameKaryawan(None)
 FrameBarang1=FrameBarang1(None)
 FrameBarang2=FrameBarang2(None)
-FrameProfil=FrameProfil(None)
 FrameLapor=FrameLapor(None)
+FrameLapor2=FrameLapor2(None)
+FrameEnd=FrameEnd(None)
 
 FrameWelcome.Show()
 # FrameLogin.Show()
 # FrameMgr.Show()
-# FrameKry.Show()
 # FrameKaryawan.Show()
 # FrameBarang1.Show()
 # FrameBarang2.Show()
-# FrameInput.Show()
-# FrameProfil.Show()
-# FrameInputLp.Show()
-# FrameInputKr.Show()
 # FrameLapor.Show()
 
 app.MainLoop()

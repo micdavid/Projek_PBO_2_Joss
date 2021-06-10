@@ -69,6 +69,65 @@ class WelcomeFrame ( wx.Frame ):
 
 
 ###########################################################################
+## Class FrameLogin
+###########################################################################
+
+class FrameLogin ( wx.Frame ):
+
+	def __init__( self, parent ):
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 300,250 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+
+		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+
+		bSizer21 = wx.BoxSizer( wx.VERTICAL )
+
+		self.m_staticText21 = wx.StaticText( self, wx.ID_ANY, u"LOGIN DULU BOSSS!!!", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText21.Wrap( -1 )
+
+		self.m_staticText21.SetFont( wx.Font( 11, wx.FONTFAMILY_SWISS, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, "Arial Black" ) )
+
+		bSizer21.Add( self.m_staticText21, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+		self.m_staticText22 = wx.StaticText( self, wx.ID_ANY, u"Username", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText22.Wrap( -1 )
+
+		bSizer21.Add( self.m_staticText22, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+		self.input_username = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer21.Add( self.input_username, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+		self.m_staticText23 = wx.StaticText( self, wx.ID_ANY, u"Password", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText23.Wrap( -1 )
+
+		bSizer21.Add( self.m_staticText23, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+		self.input_pw = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer21.Add( self.input_pw, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+		self.tombol_login = wx.Button( self, wx.ID_ANY, u"LOGIN", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.tombol_login.SetBackgroundColour( wx.Colour( 0, 255, 0 ) )
+
+		bSizer21.Add( self.tombol_login, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+
+		self.SetSizer( bSizer21 )
+		self.Layout()
+
+		self.Centre( wx.BOTH )
+
+		# Connect Events
+		self.tombol_login.Bind( wx.EVT_BUTTON, self.btn_login )
+
+	def __del__( self ):
+		pass
+
+
+	# Virtual event handlers, overide them in your derived class
+	def btn_login( self, event ):
+		event.Skip()
+
+
+###########################################################################
 ## Class FrameKaryawanMgr
 ###########################################################################
 
@@ -151,6 +210,9 @@ class FrameKaryawanMgr ( wx.Frame ):
 		self.m_button27 = wx.Button( sbSizer7.GetStaticBox(), wx.ID_ANY, u"<< Back", wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer16.Add( self.m_button27, 0, wx.ALL, 5 )
 
+		self.m_button26 = wx.Button( sbSizer7.GetStaticBox(), wx.ID_ANY, u"Selesai >>", wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer16.Add( self.m_button26, 0, wx.ALL, 5 )
+
 
 		sbSizer7.Add( fgSizer16, 1, wx.EXPAND, 5 )
 
@@ -164,6 +226,7 @@ class FrameKaryawanMgr ( wx.Frame ):
 		self.tabel_karyawan.Bind( wx.grid.EVT_GRID_SELECT_CELL, self.tabel_karyawanOnGridCmdSelectCell )
 		self.m_button24.Bind( wx.EVT_BUTTON, self.btn_tambah )
 		self.m_button27.Bind( wx.EVT_BUTTON, self.btn_back )
+		self.m_button26.Bind( wx.EVT_BUTTON, self.btn_end )
 
 	def __del__( self ):
 		pass
@@ -177,6 +240,9 @@ class FrameKaryawanMgr ( wx.Frame ):
 		event.Skip()
 
 	def btn_back( self, event ):
+		event.Skip()
+
+	def btn_end( self, event ):
 		event.Skip()
 
 
@@ -358,6 +424,9 @@ class FrameBarangMgr ( wx.Frame ):
 		self.m_button37 = wx.Button( sbSizer41.GetStaticBox(), wx.ID_ANY, u"<< Back ", wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer9.Add( self.m_button37, 0, wx.ALL, 5 )
 
+		self.m_button27 = wx.Button( sbSizer41.GetStaticBox(), wx.ID_ANY, u"Selesai >>", wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer9.Add( self.m_button27, 0, wx.ALL, 5 )
+
 
 		sbSizer41.Add( fgSizer9, 1, wx.EXPAND, 5 )
 
@@ -372,6 +441,7 @@ class FrameBarangMgr ( wx.Frame ):
 		self.m_button33.Bind( wx.EVT_BUTTON, self.btn_tambah )
 		self.m_button32.Bind( wx.EVT_BUTTON, self.btn_cek )
 		self.m_button37.Bind( wx.EVT_BUTTON, self.btn_back )
+		self.m_button27.Bind( wx.EVT_BUTTON, self.btn_end )
 
 	def __del__( self ):
 		pass
@@ -388,6 +458,9 @@ class FrameBarangMgr ( wx.Frame ):
 		event.Skip()
 
 	def btn_back( self, event ):
+		event.Skip()
+
+	def btn_end( self, event ):
 		event.Skip()
 
 
@@ -474,7 +547,7 @@ class FrameInputBrg ( wx.Dialog ):
 class FrameBarang ( wx.Frame ):
 
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 627,252 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 627,297 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 
@@ -550,6 +623,9 @@ class FrameBarang ( wx.Frame ):
 		self.m_button37 = wx.Button( sbSizer41.GetStaticBox(), wx.ID_ANY, u"<< Back ", wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer9.Add( self.m_button37, 0, wx.ALL, 5 )
 
+		self.m_button28 = wx.Button( sbSizer41.GetStaticBox(), wx.ID_ANY, u"Selesai >>", wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer9.Add( self.m_button28, 0, wx.ALL, 5 )
+
 
 		sbSizer41.Add( fgSizer9, 1, wx.EXPAND, 5 )
 
@@ -563,6 +639,7 @@ class FrameBarang ( wx.Frame ):
 		self.tabel_barang.Bind( wx.grid.EVT_GRID_SELECT_CELL, self.tabel_barangOnGridCmdSelectCell )
 		self.m_button21.Bind( wx.EVT_BUTTON, self.btn_lapor )
 		self.m_button37.Bind( wx.EVT_BUTTON, self.btn_back )
+		self.m_button28.Bind( wx.EVT_BUTTON, self.btn_end )
 
 	def __del__( self ):
 		pass
@@ -576,6 +653,9 @@ class FrameBarang ( wx.Frame ):
 		event.Skip()
 
 	def btn_back( self, event ):
+		event.Skip()
+
+	def btn_end( self, event ):
 		event.Skip()
 
 
@@ -646,7 +726,7 @@ class FrameInputLaporan ( wx.Dialog ):
 class FrameLaporMgr ( wx.Frame ):
 
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 410,275 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 410,301 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 
@@ -722,6 +802,9 @@ class FrameLaporMgr ( wx.Frame ):
 		self.m_button37 = wx.Button( sbSizer42.GetStaticBox(), wx.ID_ANY, u"<< Back ", wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer9.Add( self.m_button37, 0, wx.ALL, 5 )
 
+		self.m_button29 = wx.Button( sbSizer42.GetStaticBox(), wx.ID_ANY, u"Selesai >>", wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer9.Add( self.m_button29, 0, wx.ALL, 5 )
+
 
 		sbSizer42.Add( fgSizer9, 1, wx.EXPAND, 5 )
 
@@ -735,6 +818,7 @@ class FrameLaporMgr ( wx.Frame ):
 		self.tabel_lapor.Bind( wx.grid.EVT_GRID_SELECT_CELL, self.tabel_barangOnGridCmdSelectCell )
 		self.m_button212.Bind( wx.EVT_BUTTON, self.btn_tambah )
 		self.m_button37.Bind( wx.EVT_BUTTON, self.btn_back )
+		self.m_button29.Bind( wx.EVT_BUTTON, self.btn_end )
 
 	def __del__( self ):
 		pass
@@ -750,157 +834,110 @@ class FrameLaporMgr ( wx.Frame ):
 	def btn_back( self, event ):
 		event.Skip()
 
+	def btn_end( self, event ):
+		event.Skip()
+
 
 ###########################################################################
-## Class FrameProfilKry
+## Class FrameLaporan
 ###########################################################################
 
-class FrameProfilKry ( wx.Frame ):
+class FrameLaporan ( wx.Frame ):
 
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 792,300 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 349,295 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 
-		sbSizer71 = wx.StaticBoxSizer( wx.StaticBox( self, wx.ID_ANY, u"Menu Profil" ), wx.VERTICAL )
-
-		fgSizer18 = wx.FlexGridSizer( 0, 2, 0, 0 )
-		fgSizer18.SetFlexibleDirection( wx.BOTH )
-		fgSizer18.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
-
-		bSizer10 = wx.BoxSizer( wx.VERTICAL )
-
-		self.m_staticText25 = wx.StaticText( sbSizer71.GetStaticBox(), wx.ID_ANY, u"Profil Karyawan", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText25.Wrap( -1 )
-
-		bSizer10.Add( self.m_staticText25, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
-
-
-		fgSizer18.Add( bSizer10, 1, wx.EXPAND, 5 )
-
-		fgSizer19 = wx.FlexGridSizer( 0, 2, 0, 0 )
-		fgSizer19.SetFlexibleDirection( wx.BOTH )
-		fgSizer19.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
-
-
-		fgSizer18.Add( fgSizer19, 1, wx.EXPAND, 5 )
-
-		self.tabel_karyawan = wx.grid.Grid( sbSizer71.GetStaticBox(), wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
-
-		# Grid
-		self.tabel_karyawan.CreateGrid( 3, 8 )
-		self.tabel_karyawan.EnableEditing( True )
-		self.tabel_karyawan.EnableGridLines( True )
-		self.tabel_karyawan.EnableDragGridSize( False )
-		self.tabel_karyawan.SetMargins( 0, 0 )
-
-		# Columns
-		self.tabel_karyawan.EnableDragColMove( False )
-		self.tabel_karyawan.EnableDragColSize( True )
-		self.tabel_karyawan.SetColLabelSize( 30 )
-		self.tabel_karyawan.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
-
-		# Rows
-		self.tabel_karyawan.EnableDragRowSize( True )
-		self.tabel_karyawan.SetRowLabelSize( 80 )
-		self.tabel_karyawan.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
-
-		# Label Appearance
-
-		# Cell Defaults
-		self.tabel_karyawan.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
-		fgSizer18.Add( self.tabel_karyawan, 0, wx.ALL, 5 )
-
-		bSizer11 = wx.BoxSizer( wx.VERTICAL )
-
-		self.m_button30 = wx.Button( sbSizer71.GetStaticBox(), wx.ID_ANY, u"Update Data", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer11.Add( self.m_button30, 0, wx.ALL, 5 )
-
-
-		fgSizer18.Add( bSizer11, 1, wx.EXPAND, 5 )
-
-
-		sbSizer71.Add( fgSizer18, 1, wx.EXPAND, 5 )
-
-
-		sbSizer71.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+		sbSizer8 = wx.StaticBoxSizer( wx.StaticBox( self, wx.ID_ANY, u"Menu Laporan" ), wx.VERTICAL )
 
 		fgSizer20 = wx.FlexGridSizer( 0, 2, 0, 0 )
 		fgSizer20.SetFlexibleDirection( wx.BOTH )
 		fgSizer20.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
-		self.m_button31 = wx.Button( sbSizer71.GetStaticBox(), wx.ID_ANY, u"<< Back", wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer20.Add( self.m_button31, 0, wx.ALL, 5 )
+		bSizer14 = wx.BoxSizer( wx.VERTICAL )
+
+		self.m_staticText32 = wx.StaticText( sbSizer8.GetStaticBox(), wx.ID_ANY, u"Data Laporan", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText32.Wrap( -1 )
+
+		self.m_staticText32.SetFont( wx.Font( 12, wx.FONTFAMILY_SWISS, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, "Arial" ) )
+
+		bSizer14.Add( self.m_staticText32, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
 
 
-		sbSizer71.Add( fgSizer20, 1, wx.EXPAND, 5 )
+		fgSizer20.Add( bSizer14, 1, wx.EXPAND, 5 )
+
+		fgSizer21 = wx.FlexGridSizer( 0, 2, 0, 0 )
+		fgSizer21.SetFlexibleDirection( wx.BOTH )
+		fgSizer21.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
 
-		self.SetSizer( sbSizer71 )
-		self.Layout()
+		fgSizer20.Add( fgSizer21, 1, wx.EXPAND, 5 )
 
-		self.Centre( wx.BOTH )
+		self.tabel_lapor = wx.grid.Grid( sbSizer8.GetStaticBox(), wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 
-	def __del__( self ):
-		pass
+		# Grid
+		self.tabel_lapor.CreateGrid( 5, 3 )
+		self.tabel_lapor.EnableEditing( True )
+		self.tabel_lapor.EnableGridLines( True )
+		self.tabel_lapor.EnableDragGridSize( False )
+		self.tabel_lapor.SetMargins( 0, 0 )
 
+		# Columns
+		self.tabel_lapor.EnableDragColMove( False )
+		self.tabel_lapor.EnableDragColSize( True )
+		self.tabel_lapor.SetColLabelSize( 30 )
+		self.tabel_lapor.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
-###########################################################################
-## Class FrameLogin
-###########################################################################
+		# Rows
+		self.tabel_lapor.EnableDragRowSize( True )
+		self.tabel_lapor.SetRowLabelSize( 80 )
+		self.tabel_lapor.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
-class FrameLogin ( wx.Frame ):
+		# Label Appearance
 
-	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 300,250 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
-
-		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
-
-		bSizer21 = wx.BoxSizer( wx.VERTICAL )
-
-		self.m_staticText21 = wx.StaticText( self, wx.ID_ANY, u"LOGIN DULU BOSSS!!!", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText21.Wrap( -1 )
-
-		self.m_staticText21.SetFont( wx.Font( 11, wx.FONTFAMILY_SWISS, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, "Arial Black" ) )
-
-		bSizer21.Add( self.m_staticText21, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
-
-		self.m_staticText22 = wx.StaticText( self, wx.ID_ANY, u"Username", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText22.Wrap( -1 )
-
-		bSizer21.Add( self.m_staticText22, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
-
-		self.input_username = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer21.Add( self.input_username, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
-
-		self.m_staticText23 = wx.StaticText( self, wx.ID_ANY, u"Password", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText23.Wrap( -1 )
-
-		bSizer21.Add( self.m_staticText23, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
-
-		self.input_pw = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer21.Add( self.input_pw, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
-
-		self.tombol_login = wx.Button( self, wx.ID_ANY, u"LOGIN", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.tombol_login.SetBackgroundColour( wx.Colour( 0, 255, 0 ) )
-
-		bSizer21.Add( self.tombol_login, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+		# Cell Defaults
+		self.tabel_lapor.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
+		fgSizer20.Add( self.tabel_lapor, 0, wx.ALL, 5 )
 
 
-		self.SetSizer( bSizer21 )
+		sbSizer8.Add( fgSizer20, 1, wx.EXPAND, 5 )
+
+
+		sbSizer8.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+		fgSizer24 = wx.FlexGridSizer( 0, 2, 0, 0 )
+		fgSizer24.SetFlexibleDirection( wx.BOTH )
+		fgSizer24.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
+
+		self.m_button23 = wx.Button( sbSizer8.GetStaticBox(), wx.ID_ANY, u"<< Back", wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer24.Add( self.m_button23, 0, wx.ALL, 5 )
+
+		self.m_button30 = wx.Button( sbSizer8.GetStaticBox(), wx.ID_ANY, u"Selesai >>", wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer24.Add( self.m_button30, 0, wx.ALL, 5 )
+
+
+		sbSizer8.Add( fgSizer24, 1, wx.EXPAND, 5 )
+
+
+		self.SetSizer( sbSizer8 )
 		self.Layout()
 
 		self.Centre( wx.BOTH )
 
 		# Connect Events
-		self.tombol_login.Bind( wx.EVT_BUTTON, self.btn_login )
+		self.m_button23.Bind( wx.EVT_BUTTON, self.btn_back )
+		self.m_button30.Bind( wx.EVT_BUTTON, self.btn_end )
 
 	def __del__( self ):
 		pass
 
 
 	# Virtual event handlers, overide them in your derived class
-	def btn_login( self, event ):
+	def btn_back( self, event ):
+		event.Skip()
+
+	def btn_end( self, event ):
 		event.Skip()
 
 
@@ -973,65 +1010,68 @@ class FrameMenuMgr ( wx.Frame ):
 
 
 ###########################################################################
-## Class FrameMenuKry
+## Class EndFrame
 ###########################################################################
 
-class FrameMenuKry ( wx.Frame ):
+class EndFrame ( wx.Frame ):
 
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 500,300 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 450,300 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
-		sbSizer61 = wx.StaticBoxSizer( wx.StaticBox( self, wx.ID_ANY, u"Daftar Menu Pilihan" ), wx.VERTICAL )
+		bSizer11 = wx.BoxSizer( wx.VERTICAL )
 
-		self.m_staticText61 = wx.StaticText( sbSizer61.GetStaticBox(), wx.ID_ANY, u"Menu Profil", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText61.Wrap( -1 )
+		self.m_staticText11 = wx.StaticText( self, wx.ID_ANY, u"Terima Kasih", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText11.Wrap( -1 )
 
-		sbSizer61.Add( self.m_staticText61, 0, wx.ALL, 5 )
+		self.m_staticText11.SetFont( wx.Font( 24, wx.FONTFAMILY_ROMAN, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, "Andalus" ) )
 
-		self.m_button61 = wx.Button( sbSizer61.GetStaticBox(), wx.ID_ANY, u"Profil >>", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_button61.SetBackgroundColour( wx.Colour( 0, 255, 128 ) )
+		bSizer11.Add( self.m_staticText11, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
 
-		sbSizer61.Add( self.m_button61, 0, wx.ALL, 5 )
+		self.m_staticText12 = wx.StaticText( self, wx.ID_ANY, u"Sudah Mampir", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText12.Wrap( -1 )
 
-		self.m_staticText62 = wx.StaticText( sbSizer61.GetStaticBox(), wx.ID_ANY, u"Menu Barang", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText62.Wrap( -1 )
+		self.m_staticText12.SetFont( wx.Font( 34, wx.FONTFAMILY_ROMAN, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, "Andalus" ) )
 
-		sbSizer61.Add( self.m_staticText62, 0, wx.ALL, 5 )
-
-		self.m_button62 = wx.Button( sbSizer61.GetStaticBox(), wx.ID_ANY, u"Barang >>", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_button62.SetBackgroundColour( wx.Colour( 0, 255, 128 ) )
-
-		sbSizer61.Add( self.m_button62, 0, wx.ALL, 5 )
+		bSizer11.Add( self.m_staticText12, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
 
 
-		sbSizer61.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+		bSizer11.Add( ( 0, 0), 1, wx.EXPAND, 5 )
 
-		self.m_button63 = wx.Button( sbSizer61.GetStaticBox(), wx.ID_ANY, u"<< Back", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_button63.SetBackgroundColour( wx.Colour( 255, 255, 0 ) )
+		self.m_button11 = wx.Button( self, wx.ID_ANY, u"Login Lagi?", wx.DefaultPosition, wx.Size( 140,30 ), 0 )
+		self.m_button11.SetFont( wx.Font( 16, wx.FONTFAMILY_ROMAN, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, "Andalus" ) )
 
-		sbSizer61.Add( self.m_button63, 0, wx.ALL, 5 )
+		bSizer11.Add( self.m_button11, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+		self.m_button111 = wx.Button( self, wx.ID_ANY, u"Selesai", wx.DefaultPosition, wx.Size( 100,25 ), 0 )
+		self.m_button111.SetFont( wx.Font( 12, wx.FONTFAMILY_ROMAN, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, "Andalus" ) )
+
+		bSizer11.Add( self.m_button111, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
 
 
-		self.SetSizer( sbSizer61 )
+		bSizer11.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+
+		self.SetSizer( bSizer11 )
 		self.Layout()
 
 		self.Centre( wx.BOTH )
 
 		# Connect Events
-		self.m_button61.Bind( wx.EVT_BUTTON, self.btn_profil )
-		self.m_button62.Bind( wx.EVT_BUTTON, self.btn_barang1 )
+		self.m_button11.Bind( wx.EVT_BUTTON, self.btn_login )
+		self.m_button111.Bind( wx.EVT_BUTTON, self.btn_end )
 
 	def __del__( self ):
 		pass
 
 
 	# Virtual event handlers, overide them in your derived class
-	def btn_profil( self, event ):
+	def btn_login( self, event ):
 		event.Skip()
 
-	def btn_barang1( self, event ):
+	def btn_end( self, event ):
 		event.Skip()
 
 
