@@ -24,6 +24,7 @@ class Login(gui.FrameLogin):
         Pass = []
         Nama = []
         Jabatan = []
+        login = False
 
         for x in mgrlist:
             Uname.append(x[1])
@@ -41,11 +42,17 @@ class Login(gui.FrameLogin):
             if username == Uname[i] and password == Pass[i]:
                 if Jabatan[i] == "Manager":
                     FrameMgr.Show()
+                    login = True
                     FrameLogin.Hide()
                 elif Jabatan[i] != "Manager" :
                     FrameBarang2.Show()
                     FrameLogin.Hide()
-
+                    login = True
+        
+        if login != True:
+            alert = wx.MessageDialog(
+                None, "username dan password salah", "pemeberitahuan", wx.YES_DEFAULT)
+            asw = alert.ShowModal()
 
 class FrameKaryawan(gui.FrameKaryawanMgr):
     def __init__(self,parent):
@@ -74,12 +81,13 @@ class FrameKaryawan(gui.FrameKaryawanMgr):
         for row_kry in listKry:
             self.tabel_karyawan.AppendRows(1)
             id, username, password, nama_karyawan, jenis_kelamin, tanggal_lahir, alamat, no_telepon = row_kry
+            almt = str(alamat)
             self.tabel_karyawan.SetCellValue(row, 0, username)
             self.tabel_karyawan.SetCellValue(row, 1, password)
             self.tabel_karyawan.SetCellValue(row, 2, nama_karyawan)
             self.tabel_karyawan.SetCellValue(row, 3, jenis_kelamin)
             self.tabel_karyawan.SetCellValue(row, 4, tanggal_lahir)
-            self.tabel_karyawan.SetCellValue(row, 5, alamat)
+            self.tabel_karyawan.SetCellValue(row, 5, almt)
             self.tabel_karyawan.SetCellValue(row, 6, no_telepon)
             self.listIdKry.append(id)
             row += 1
@@ -288,7 +296,7 @@ class FrameBarang1 (gui.FrameBarangMgr):
                 print('hapus')
                 self.barang.deleteDataBarang(self.listIdBarang[baris])
                 self.showDataBarang()
-                self.AddBtnKaryawan()
+                self.AddBtnBarang()
 
 class dlgAddBarang(gui.FrameInputBrg):
     def __init__(self, parent, id=-1):

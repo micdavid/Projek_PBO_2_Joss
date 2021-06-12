@@ -78,6 +78,7 @@ class FrameLogin ( wx.Frame ):
 		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 300,250 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
 		bSizer21 = wx.BoxSizer( wx.VERTICAL )
 
@@ -137,6 +138,7 @@ class FrameKaryawanMgr ( wx.Frame ):
 		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 770,300 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
 		sbSizer7 = wx.StaticBoxSizer( wx.StaticBox( self, wx.ID_ANY, u"Menu Karyawan" ), wx.VERTICAL )
 
@@ -192,6 +194,8 @@ class FrameKaryawanMgr ( wx.Frame ):
 		bSizer9 = wx.BoxSizer( wx.VERTICAL )
 
 		self.m_button24 = wx.Button( sbSizer7.GetStaticBox(), wx.ID_ANY, u"Tambah Data", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button24.SetBackgroundColour( wx.Colour( 255, 128, 64 ) )
+
 		bSizer9.Add( self.m_button24, 0, wx.ALL, 5 )
 
 
@@ -208,9 +212,13 @@ class FrameKaryawanMgr ( wx.Frame ):
 		fgSizer16.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
 		self.m_button27 = wx.Button( sbSizer7.GetStaticBox(), wx.ID_ANY, u"<< Back", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button27.SetBackgroundColour( wx.Colour( 255, 255, 0 ) )
+
 		fgSizer16.Add( self.m_button27, 0, wx.ALL, 5 )
 
 		self.m_button26 = wx.Button( sbSizer7.GetStaticBox(), wx.ID_ANY, u"Selesai >>", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button26.SetBackgroundColour( wx.Colour( 0, 255, 0 ) )
+
 		fgSizer16.Add( self.m_button26, 0, wx.ALL, 5 )
 
 
@@ -256,6 +264,7 @@ class FrameInputKry ( wx.Dialog ):
 		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = u"Frame Input Karyawan", pos = wx.DefaultPosition, size = wx.Size( 465,339 ), style = wx.DEFAULT_DIALOG_STYLE )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
 		fgSizer20 = wx.FlexGridSizer( 0, 2, 0, 0 )
 		fgSizer20.SetFlexibleDirection( wx.BOTH )
@@ -318,6 +327,8 @@ class FrameInputKry ( wx.Dialog ):
 		fgSizer20.Add( self.input_telp, 0, wx.ALL, 5 )
 
 		self.m_button26 = wx.Button( self, wx.ID_ANY, u"Simpan", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button26.SetBackgroundColour( wx.Colour( 0, 255, 0 ) )
+
 		fgSizer20.Add( self.m_button26, 0, wx.ALL, 5 )
 
 
@@ -348,6 +359,7 @@ class FrameBarangMgr ( wx.Frame ):
 		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 675,331 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
 		sbSizer41 = wx.StaticBoxSizer( wx.StaticBox( self, wx.ID_ANY, u"Menu Barang" ), wx.VERTICAL )
 
@@ -403,9 +415,13 @@ class FrameBarangMgr ( wx.Frame ):
 		bSizer3 = wx.BoxSizer( wx.VERTICAL )
 
 		self.m_button33 = wx.Button( sbSizer41.GetStaticBox(), wx.ID_ANY, u"Tambah Data", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button33.SetBackgroundColour( wx.Colour( 255, 128, 64 ) )
+
 		bSizer3.Add( self.m_button33, 0, wx.ALL, 5 )
 
 		self.m_button32 = wx.Button( sbSizer41.GetStaticBox(), wx.ID_ANY, u"Cek Laporan", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button32.SetBackgroundColour( wx.Colour( 255, 128, 64 ) )
+
 		bSizer3.Add( self.m_button32, 0, wx.ALL, 5 )
 
 
@@ -422,9 +438,13 @@ class FrameBarangMgr ( wx.Frame ):
 		fgSizer9.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
 		self.m_button37 = wx.Button( sbSizer41.GetStaticBox(), wx.ID_ANY, u"<< Back ", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button37.SetBackgroundColour( wx.Colour( 255, 255, 0 ) )
+
 		fgSizer9.Add( self.m_button37, 0, wx.ALL, 5 )
 
 		self.m_button27 = wx.Button( sbSizer41.GetStaticBox(), wx.ID_ANY, u"Selesai >>", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button27.SetBackgroundColour( wx.Colour( 0, 255, 0 ) )
+
 		fgSizer9.Add( self.m_button27, 0, wx.ALL, 5 )
 
 
@@ -474,6 +494,7 @@ class FrameInputBrg ( wx.Dialog ):
 		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = u"Input Data Barang", pos = wx.DefaultPosition, size = wx.Size( 372,276 ), style = wx.DEFAULT_DIALOG_STYLE )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
 		fgSizer19 = wx.FlexGridSizer( 0, 2, 0, 0 )
 		fgSizer19.SetFlexibleDirection( wx.BOTH )
@@ -520,6 +541,8 @@ class FrameInputBrg ( wx.Dialog ):
 		fgSizer19.Add( self.input_stok, 0, wx.ALL, 5 )
 
 		self.m_button24 = wx.Button( self, wx.ID_ANY, u"Simpan", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button24.SetBackgroundColour( wx.Colour( 0, 255, 0 ) )
+
 		fgSizer19.Add( self.m_button24, 0, wx.ALL, 5 )
 
 
@@ -550,6 +573,7 @@ class FrameBarang ( wx.Frame ):
 		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 627,297 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
 		sbSizer41 = wx.StaticBoxSizer( wx.StaticBox( self, wx.ID_ANY, u"Menu Barang" ), wx.VERTICAL )
 
@@ -605,6 +629,8 @@ class FrameBarang ( wx.Frame ):
 		bSizer3 = wx.BoxSizer( wx.VERTICAL )
 
 		self.m_button21 = wx.Button( sbSizer41.GetStaticBox(), wx.ID_ANY, u"Laporkan", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button21.SetBackgroundColour( wx.Colour( 255, 128, 64 ) )
+
 		bSizer3.Add( self.m_button21, 0, wx.ALL, 5 )
 
 
@@ -621,9 +647,13 @@ class FrameBarang ( wx.Frame ):
 		fgSizer9.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
 		self.m_button37 = wx.Button( sbSizer41.GetStaticBox(), wx.ID_ANY, u"<< Back ", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button37.SetBackgroundColour( wx.Colour( 255, 255, 0 ) )
+
 		fgSizer9.Add( self.m_button37, 0, wx.ALL, 5 )
 
 		self.m_button28 = wx.Button( sbSizer41.GetStaticBox(), wx.ID_ANY, u"Selesai >>", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button28.SetBackgroundColour( wx.Colour( 0, 255, 0 ) )
+
 		fgSizer9.Add( self.m_button28, 0, wx.ALL, 5 )
 
 
@@ -669,6 +699,7 @@ class FrameInputLaporan ( wx.Dialog ):
 		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = u"Input Data Laporan", pos = wx.DefaultPosition, size = wx.Size( 379,185 ), style = wx.DEFAULT_DIALOG_STYLE )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
 		fgSizer21 = wx.FlexGridSizer( 0, 2, 0, 0 )
 		fgSizer21.SetFlexibleDirection( wx.BOTH )
@@ -699,6 +730,8 @@ class FrameInputLaporan ( wx.Dialog ):
 		fgSizer21.Add( self.input_user, 0, wx.ALL, 5 )
 
 		self.m_button29 = wx.Button( self, wx.ID_ANY, u"Simpan", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button29.SetBackgroundColour( wx.Colour( 0, 255, 0 ) )
+
 		fgSizer21.Add( self.m_button29, 0, wx.ALL, 5 )
 
 
@@ -729,6 +762,7 @@ class FrameLaporMgr ( wx.Frame ):
 		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 410,301 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
 		sbSizer42 = wx.StaticBoxSizer( wx.StaticBox( self, wx.ID_ANY, u"Menu Laporan" ), wx.VERTICAL )
 
@@ -784,6 +818,8 @@ class FrameLaporMgr ( wx.Frame ):
 		bSizer3 = wx.BoxSizer( wx.VERTICAL )
 
 		self.m_button212 = wx.Button( sbSizer42.GetStaticBox(), wx.ID_ANY, u"Tambah", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button212.SetBackgroundColour( wx.Colour( 255, 128, 64 ) )
+
 		bSizer3.Add( self.m_button212, 0, wx.ALL, 5 )
 
 
@@ -800,9 +836,13 @@ class FrameLaporMgr ( wx.Frame ):
 		fgSizer9.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
 		self.m_button37 = wx.Button( sbSizer42.GetStaticBox(), wx.ID_ANY, u"<< Back ", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button37.SetBackgroundColour( wx.Colour( 255, 255, 0 ) )
+
 		fgSizer9.Add( self.m_button37, 0, wx.ALL, 5 )
 
 		self.m_button29 = wx.Button( sbSizer42.GetStaticBox(), wx.ID_ANY, u"Selesai >>", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button29.SetBackgroundColour( wx.Colour( 0, 255, 0 ) )
+
 		fgSizer9.Add( self.m_button29, 0, wx.ALL, 5 )
 
 
@@ -848,6 +888,7 @@ class FrameLaporan ( wx.Frame ):
 		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 349,295 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
 		sbSizer8 = wx.StaticBoxSizer( wx.StaticBox( self, wx.ID_ANY, u"Menu Laporan" ), wx.VERTICAL )
 
@@ -911,9 +952,13 @@ class FrameLaporan ( wx.Frame ):
 		fgSizer24.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
 		self.m_button23 = wx.Button( sbSizer8.GetStaticBox(), wx.ID_ANY, u"<< Back", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button23.SetBackgroundColour( wx.Colour( 255, 255, 0 ) )
+
 		fgSizer24.Add( self.m_button23, 0, wx.ALL, 5 )
 
 		self.m_button30 = wx.Button( sbSizer8.GetStaticBox(), wx.ID_ANY, u"Selesai >>", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button30.SetBackgroundColour( wx.Colour( 0, 255, 0 ) )
+
 		fgSizer24.Add( self.m_button30, 0, wx.ALL, 5 )
 
 
@@ -951,6 +996,7 @@ class FrameMenuMgr ( wx.Frame ):
 		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 500,300 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
 		sbSizer31 = wx.StaticBoxSizer( wx.StaticBox( self, wx.ID_ANY, u"Daftar Menu Pilihan :" ), wx.VERTICAL )
 
